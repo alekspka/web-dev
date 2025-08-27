@@ -1,0 +1,50 @@
+/* 
+.idcard {
+  display: flex;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  margin: auto;
+  padding: 1px;
+  border: 1px solid hsla(0, 0%, 50%, 0.8);
+}
+
+.idcard img{
+  width: 15%;
+}
+
+.idcard p{
+  float: right;
+  width: 60%;
+  margin: 0;
+} */
+
+.idcard {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 1em;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 500px;
+}
+
+.idcard img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+
+.random {
+    display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 1em;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 500px;
+}
