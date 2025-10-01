@@ -8,10 +8,16 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
+
   const deleteProduct = async (id) => {
     try {
       const res = await fetch(`/api/products/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (!res.ok) {
         throw new Error("Failed to delete product");
@@ -51,6 +57,10 @@ const ProductPage = () => {
     navigate("/");
   };
 
+  const onEditClick = (productId) => {
+    navigate(`/edit-product/${productId}`);
+  };
+
   return (
     <div className="product-preview">
       {loading ? (
@@ -70,6 +80,7 @@ const ProductPage = () => {
           <p>Phone: {product.supplier.contactPhone}</p>
           <p>Rating: {product.supplier.rating}/5</p>
           <button onClick={() => onDeleteClick(product._id)}>delete</button>
+          <button onClick={() => onEditClick(product._id)}>edit</button>
         </>
       )}
     </div>

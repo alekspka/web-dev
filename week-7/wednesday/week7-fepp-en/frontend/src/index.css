@@ -76,7 +76,54 @@
   text-decoration: none;
 }
 
-/* job details page */
+/* product details page */
+.product-preview {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-preview h2 {
+  font-size: 28px;
+  color: #f1356d;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f1356d;
+  padding-bottom: 10px;
+}
+
+.product-preview h3 {
+  font-size: 20px;
+  color: #f1356d;
+  margin: 20px 0 10px;
+}
+
+.product-preview p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.product-preview button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.product-preview button:hover {
+  background: #d1285a;
+}
+
+/* job details page (keeping for backward compatibility) */
 .job-details h2 {
   font-size: 20px;
   color: #f1356d;

@@ -12,6 +12,9 @@ const AddProductPage = () => {
   const [contactPhone, setContactPhone] = useState("");
   const [rating, setRating] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
+
   const navigate = useNavigate();
  
   const addProduct = async (newProduct) => {
@@ -20,6 +23,7 @@ const AddProductPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newProduct),
       });

@@ -1,8 +1,8 @@
 import ProductListings from "../components/ProductListings";
-import { useEffect, useStat } from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
@@ -30,7 +30,7 @@ const Home = () => {
     <div className="home">
       {error && <div>{error}</div>}
       {isPending && <div>Loading...</div>}
-      {jobs && <JobListings jobs={jobs} />}
+      {products && <ProductListings products={products} />}
     </div>
   );
 };
