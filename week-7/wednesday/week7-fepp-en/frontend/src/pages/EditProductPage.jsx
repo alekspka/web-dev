@@ -18,18 +18,32 @@ const EditProductPage = () => {
   const [contactPhone, setContactPhone] = useState("");
   const [rating, setRating] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
+
   const navigate = useNavigate();
 
   const updateProduct = async (product) => {
     try {
-      const res = await fetch(`/api/products/${product.id}`, {
+      console.log("Updating product with data:", product);
+      console.log("Using token:", token ? "Token exists" : "No token");
+      
+      const res = await fetch(`/api/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(product),
       });
-      if (!res.ok) throw new Error("Failed to update product");
+      
+      console.log("Update response status:", res.status);
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Update failed:", errorData);
+        throw new Error("Failed to update product");
+      }
       return res.ok;
     } catch (error) {
       console.error("Error updating product:", error);
@@ -74,7 +88,6 @@ const EditProductPage = () => {
     e.preventDefault();
 
     const updatedProduct = {
-      id,
       title,
       category,
       description,
@@ -90,10 +103,11 @@ const EditProductPage = () => {
 
     const success = await updateProduct(updatedProduct);
     if (success) {
-      // toast.success("Product Updated Successfully");
+      console.log("Product updated successfully!");
       navigate(`/products/${id}`);
     } else {
-      // toast.error("Failed to update the product");
+      console.error("Failed to update the product");
+      alert("Failed to update the product. Please check the console for details.");
     }
   };
 

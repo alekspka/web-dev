@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const handleClick = (e) => {
     localStorage.removeItem("user");
+    setIsAuthenticated(false);
   };
 
   return (
     <nav className="navbar">
       <Link to="/">
-        <h1>React Jobs</h1>
+        <h1>React Products</h1>
       </Link>
       <div className="links">
         <div>
-          <Link to="/jobs/add-job">Add Job</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
-          
-          <button onClick={handleClick}>Log out</button>          
+          {isAuthenticated ? (
+            <>
+              <Link to="/products/add-product">Add Product</Link>
+              <button onClick={handleClick}>Log out</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
