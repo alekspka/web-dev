@@ -48,8 +48,26 @@ const getProductById = async (req, res) => {
 
 // PUT /products/:productId
 const updateProduct = async (req, res) => {
-  res.send("updateProduct");
-};
+  const { productId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(jobId)) {
+    return res.status(400).json({ message: "Invalid job ID" });
+  }
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      { _id: productId },
+      { ...req.body },
+      { new: true }
+    );
+    if (updatedProduct) {
+      res.status(200).json(updatedProduct);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update product" });
+  }
+};  
 
 // DELETE /products/:productId
 const deleteProduct = async (req, res) => {

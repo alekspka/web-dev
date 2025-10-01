@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const AddProductPage = () => {
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("Full-Time");
+  const [category, setCategory] = useState("Electronics");
   const [description, setDescription] = useState("");
-  const [companyName, setCompanyName] = useState("");
+  const [price, setPrice] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("");
+  const [supplierName, setSupplierName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
+  const [rating, setRating] = useState("");
 
   const navigate = useNavigate();
  
@@ -35,12 +38,15 @@ const AddProductPage = () => {
 
     const newProduct = {
       title,
-      type,
+      category,
       description,
-      company: {
-        name: companyName,
+      price: parseFloat(price),
+      stockQuantity: parseInt(stockQuantity),
+      supplier: {
+        name: supplierName,
         contactEmail,
         contactPhone,
+        rating: parseFloat(rating),
       },
     };
 
@@ -59,12 +65,13 @@ const AddProductPage = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label>Product type:</label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="Full-Time">Full-Time</option>
-          <option value="Part-Time">Part-Time</option>
-          <option value="Remote">Remote</option>
-          <option value="Internship">Internship</option>
+        <label>Product category:</label>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="Electronics">Electronics</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Books">Books</option>
+          <option value="Sports">Sports</option>
         </select>
 
         <label>Product Description:</label>
@@ -73,26 +80,51 @@ const AddProductPage = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        <label>Company Name:</label>
+        <label>Price:</label>
+        <input
+          type="number"
+          step="0.01"
+          required
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        <label>Stock Quantity:</label>
+        <input
+          type="number"
+          required
+          value={stockQuantity}
+          onChange={(e) => setStockQuantity(e.target.value)}
+        />
+        <label>Supplier Name:</label>
         <input
           type="text"
           required
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
+          value={supplierName}
+          onChange={(e) => setSupplierName(e.target.value)}
         />
         <label>Contact Email:</label>
         <input
-          type="text"
+          type="email"
           required
           value={contactEmail}
           onChange={(e) => setContactEmail(e.target.value)}
         />
         <label>Contact Phone:</label>
         <input
-          type="text"
+          type="tel"
           required
           value={contactPhone}
           onChange={(e) => setContactPhone(e.target.value)}
+        />
+        <label>Supplier Rating (1-5):</label>
+        <input
+          type="number"
+          min="1"
+          max="5"
+          step="0.1"
+          required
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
         />
         <button>Add Product</button>
       </form>

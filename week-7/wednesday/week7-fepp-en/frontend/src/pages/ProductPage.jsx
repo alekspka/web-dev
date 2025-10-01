@@ -60,11 +60,15 @@ const ProductPage = () => {
       ) : (
         <>
           <h2>{product.title}</h2>
-          <p>Type: {product.type}</p>
+          <p>Category: {product.category}</p>
           <p>Description: {product.description}</p>
-          <p>Company: {product.company.name}</p>
-          <p>Email: {product.company.contactEmail}</p>
-          <p>Phone: {product.company.contactPhone}</p>
+          <p>Price: ${product.price}</p>
+          <p>Stock Quantity: {product.stockQuantity}</p>
+          <h3>Supplier Information</h3>
+          <p>Supplier: {product.supplier.name}</p>
+          <p>Email: {product.supplier.contactEmail}</p>
+          <p>Phone: {product.supplier.contactPhone}</p>
+          <p>Rating: {product.supplier.rating}/5</p>
           <button onClick={() => onDeleteClick(product._id)}>delete</button>
         </>
       )}
