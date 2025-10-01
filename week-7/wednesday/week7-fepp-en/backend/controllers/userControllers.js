@@ -17,20 +17,16 @@ const signupUser = async (req, res) => {
     name,
     email,
     password,
-    phone_number,
-    gender,
-    date_of_birth,
-    membership_status,
+    role,
+    bio,
   } = req.body;
   try {
     if (
       !name ||
       !email ||
       !password ||
-      !phone_number ||
-      !gender ||
-      !date_of_birth ||
-      !membership_status
+      !role ||
+      !bio
     ) {
       res.status(400);
       throw new Error("Please add all fields");
@@ -52,10 +48,9 @@ const signupUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      phone_number,
-      gender,
-      date_of_birth,
-      membership_status,
+      role,
+      bio,
+      lastLogin: new Date(),
     });
 
     if (user) {
@@ -81,6 +76,9 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
+      // Update last login time
+      await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+      
       const token = generateToken(user._id);
       res.status(200).json({ email, token });
     } else {
