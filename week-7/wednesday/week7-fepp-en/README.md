@@ -1,5 +1,9 @@
 # Wednesday acitivity done by Aleksi and Jari
 
+Render: https://dashboard.render.com/web/srv-d3ehbqer433s73elultg
+
+App: https://week7-render-test.onrender.com/
+
 # Usage
 
  
