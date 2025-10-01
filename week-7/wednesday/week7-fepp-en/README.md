@@ -1,4 +1,6 @@
 # Usage
+
+Wednesday acitivity done by Aleksi and Jari
  
 1. **Install Backend Dependencies**  
    
