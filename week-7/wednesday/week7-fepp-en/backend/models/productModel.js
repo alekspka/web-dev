@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const productSchema = new mongoose.Schema({
   title: { type: String, required: true },
   category: { type: String, required: true }, // e.g., Electronics, Clothing, Furniture
@@ -10,6 +12,14 @@ const productSchema = new mongoose.Schema({
     contactPhone: { type: String, required: true },
     rating: { type: Number, min: 1, max: 5 },
   },
+});
+
+productSchema.set('toJSON', {
+  virtuals: true,
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    return ret;
+  }
 });
 
 const Product = mongoose.model('Product', productSchema);
