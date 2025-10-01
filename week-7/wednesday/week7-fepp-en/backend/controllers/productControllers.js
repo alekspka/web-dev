@@ -27,8 +27,24 @@ const createProduct = async (req, res) => {
 
 // GET /products/:productId
 const getProductById = async (req, res) => {
-  res.send("getProductById");
+  const { productId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(jobId)) {
+    return res.status(400).json({ message: "Invalid job ID" });
+  }
+
+  try {
+    const product = await Product.findById(productId);
+    if (product) {
+      res.status(200).json(product);
+    } else {
+      res.status(404).json({ message: "Job not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve job" });
+  }
 };
+
 
 // PUT /products/:productId
 const updateProduct = async (req, res) => {
@@ -37,7 +53,22 @@ const updateProduct = async (req, res) => {
 
 // DELETE /products/:productId
 const deleteProduct = async (req, res) => {
-  res.send("deleteProduct");
+  const { productId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(jobId)) {
+    return res.status(400).json({ message: "Invalid job ID" });
+  }
+  
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+    if (deletedProduct) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete product" });
+  }
 };
 
 module.exports = {
