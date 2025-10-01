@@ -1,13 +1,12 @@
 import ProductListing from "./ProductListing";
 
-const ProductListings = () => {
+const ProductListings = ({ products }) => {
   return (
-    <div className="job-list">
-      <ProductListing />
-      <ProductListing />
-      <ProductListing />
+    <div className="product-list">
+      {products.map((product) => (
+        <ProductListing key={product.id} product={product} />
+      ))}
     </div>
   );
 };
-
 export default ProductListings;

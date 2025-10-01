@@ -1,10 +1,10 @@
 const ProductListing = () => {
   return (
     <div className="product-preview">
-      <h2>Product Title</h2>
-      <p>Type: some title</p>
-      <p>Description: some description</p>
-      <p>Company: company xyz</p>
+      <h2>{Product.title}</h2>
+      <p>Type: {Product.type}</p>
+      <p>Description: {Product.description}</p>
+      <p>Company: {Product.company.name}</p>
     </div>
   );
 };
